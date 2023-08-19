@@ -38,8 +38,9 @@ jobs:
 
     - name: Download Clang Toolchain
       run: |
-        mkdir clang
-        git clone https://github.com/vijaymalav564/vortex-clang.git -b master --depth=1 clang
+      WORKDIR="$(pwd)"
+        ZYCLANG_DLINK="$(curl         https://raw.githubusercontent.com/ZyCromerZ/Clang/main/Clang-main-link.txt)"
+        ZYCLANG_DIR="$WORKDIR/ZyClang/bin"
     - name: Download mkbootimg tools
       if: env.MAKE_BOOT_IMAGE == 'true'
       run: |
