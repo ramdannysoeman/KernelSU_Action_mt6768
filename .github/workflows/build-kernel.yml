@@ -38,9 +38,10 @@ jobs:
 
     - name: Download Clang Toolchain
       run: |
-        WORKDIR="$(pwd)"
-        ZYCLANG_DLINK="$(curl https://raw.githubusercontent.com/ZyCromerZ/Clang/main/Clang-main-link.txt)"
-        ZYCLANG_DIR="$WORKDIR/ZyClang/bin"
+       mkdir clang
+        wget https://github.com/ZyCromerZ/Clang/releases/download/18.0.0-20230819-release/Clang-18.0.0-20230819.tar.gz
+        tar -C clang/ -zxf Clang-18.0.0-20230819.tar.gz
+        
     - name: Download mkbootimg tools
       if: env.MAKE_BOOT_IMAGE == 'true'
       run: |
