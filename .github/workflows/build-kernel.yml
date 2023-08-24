@@ -38,9 +38,8 @@ jobs:
 
     - name: Download Clang Toolchain
       run: |
-       mkdir ${PWD}/clang-13
-        ! [[ -f ${PWD}/clang-r383902b1.tar.gz ]] && wget https://android.googlesource.com/platform/prebuilts/clang/host/linux-x86/+archive/refs/heads/android11-qpr3-release/clang-r383902b1.tar.gz -P ${PWD}
-        tar -C ${PWD}/clang-13/ -zxvf ${PWD}/clang-r383902b1.tar.gz
+       mkdir clang
+        git clone https://github.com/vijaymalav564/vortex-clang.git -b master --depth=1 clang
         
     - name: Download mkbootimg tools
       if: env.MAKE_BOOT_IMAGE == 'true'
