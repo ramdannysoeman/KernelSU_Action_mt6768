@@ -59,7 +59,7 @@ jobs:
     - name: Kernel patch
       run: |
         cd $GITHUB_WORKSPACE/kernel_workspace
-        git clone https://github.com/ramdannysoeman/KernelSU_Action_mt6768 -b A13R pt
+        git clone https://github.com/ramdannysoeman/KernelSU_Action_mt6768 -b A11R pt
         cd android-kernel
         git apply $GITHUB_WORKSPACE/kernel_workspace/pt/KernelSU.patch
         
