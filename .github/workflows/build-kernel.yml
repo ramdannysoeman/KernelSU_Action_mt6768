@@ -39,8 +39,8 @@ jobs:
     - name: Download Clang Toolchain
       run: |
        mkdir clang
-        git clone https://gitlab.com/LeCmnGend/proton-clang.git -b clang-17 --depth=1 clang
-      
+        git clone https://github.com/vijaymalav564/vortex-clang.git -b master --depth=1 clang
+        
     - name: Download mkbootimg tools
       if: env.MAKE_BOOT_IMAGE == 'true'
       run: |
@@ -59,7 +59,10 @@ jobs:
       run: |
         cd $GITHUB_WORKSPACE/kernel_workspace
         git clone https://github.com/ramdannysoeman/KernelSU_Action_mt6768 -b A13R pt
+        cd android-kernel
+        git apply $GITHUB_WORKSPACE/kernel_workspace/pt/KernelSU.patch
         
+
     - name: Download source boot image
       if: env.MAKE_BOOT_IMAGE == 'true'
       run: |
@@ -71,6 +74,23 @@ jobs:
         else
             echo "Source boot image is empty"
         fi
+  
+    - name: Setup KernelSU
+      if: env.USE_KERNELSU == 'true'
+      run: |
+        cd $GITHUB_WORKSPACE/kernel_workspace/android-kernel
+        curl -LSs "https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh" | bash -s main
+        if [ ${{ env.USE_KPROBES }} = true ]; then
+            echo "CONFIG_MODULES=y" >> arch/${{ env.TARGET_ARCH }}/configs/${{ env.KERNEL_DEFCONFIG }}
+            echo "CONFIG_OVERLAY_FS=y" >> arch/${{ env.TARGET_ARCH }}/configs/${{ env.KERNEL_DEFCONFIG }}
+        fi
+        if [ ${{ env.DISABLE-LTO }} = true ]; then
+            sed -i 's/CONFIG_LTO=y/CONFIG_LTO=n/' arch/${{ env.TARGET_ARCH }}/configs/${{ env.KERNEL_DEFCONFIG }}
+            sed -i 's/CONFIG_LTO_CLANG=y/CONFIG_LTO_CLANG=n/' arch/${{ env.TARGET_ARCH }}/configs/${{ env.KERNEL_DEFCONFIG }}
+            sed -i 's/CONFIG_THINLTO=y/CONFIG_THINLTO=n/' arch/${{ env.TARGET_ARCH }}/configs/${{ env.KERNEL_DEFCONFIG }}
+            echo "CONFIG_LTO_NONE=y" >> arch/${{ env.TARGET_ARCH }}/configs/${{ env.KERNEL_DEFCONFIG }}
+        fi
+        echo "UPLOADNAME=-KernelSU" >> $GITHUB_ENV
 
     - name: Generate kernel configuration
       run: |
