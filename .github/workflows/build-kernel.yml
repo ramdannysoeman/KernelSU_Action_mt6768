@@ -59,10 +59,7 @@ jobs:
       run: |
         cd $GITHUB_WORKSPACE/kernel_workspace
         git clone https://github.com/ramdannysoeman/KernelSU_Action_mt6768 -b A13R pt
-        cd android-kernel
-        git apply $GITHUB_WORKSPACE/kernel_workspace/pt/KernelSU.patch
         
-
     - name: Download source boot image
       if: env.MAKE_BOOT_IMAGE == 'true'
       run: |
