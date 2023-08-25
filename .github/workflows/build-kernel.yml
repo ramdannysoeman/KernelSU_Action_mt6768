@@ -39,7 +39,7 @@ jobs:
     - name: Download Clang Toolchain
       run: |
        mkdir clang
-        git clone https://gitlab.com/LeCmnGend/proton-clang.git -b clang-15 --depth=1 clang
+        git clone https://gitlab.com/LeCmnGend/proton-clang.git -b clang-17 --depth=1 clang
       
     - name: Download mkbootimg tools
       if: env.MAKE_BOOT_IMAGE == 'true'
