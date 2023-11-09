@@ -26,13 +26,13 @@ jobs:
     - name: Download kernel source
       run: |
         cd $GITHUB_WORKSPACE
-        #git clone https://github.com/mitsu00/kernel_mt6768 -b main --depth=1 android-kernel
+        git clone https://github.com/Shakib-BD/kt_merlinx -b lineage-20 --depth=1 android-kernel
         #git clone https://github.com/mitsu00/android_kernel_xiaomi_mt6768 --depth=1 android-kernel
         #git clone https://ozipoetra120@dev.azure.com/ozipoetra120/test/_git/kernel_xiaomi_mt6768 -b uwu --depth=1 android-kernel
         #git clone https://github.com/nuuwy0/kernel_xiaomi_mt6768 -b uwu --depth=1 android-kernel
         #git clone https://github.com/mitsu00/merlin-r-oss -b main --depth=1 android-kernel
-        git clone https://github.com/mitsu00/kernel_xiaomi_mt6768 -b noksu --depth=1 android-kernel
-        #git clone https://github.com/LineageOS/android_kernel_xiaomi_mt6768 -b lineage-20 android-kernel --depth=1
+        #git clone https://github.com/mitsu00/kernel_xiaomi_mt6768 -b noksu --depth=1 android-kernel
+        #git clone https://github.com/LineageOS/android_kernel_xiaomi_mt6768 -b lineage-20 android-kernel --depth=1/LineageOS/android_kernel_xiaomi_mt6768 -b lineage-20 android-kernel --depth=1
 
     - name: Kernel patch
       run: |
