@@ -16,9 +16,13 @@ jobs:
       - name: Clone Kernel Source
         run: |
           cd $GITHUB_WORKSPACE
-          #git clone https://github.com/mt6768-dev/android_kernel_xiaomi_mt6768 -b lineage-20 --depth=1 kernel
-          git clone https://github.com/mitsu00/kernel_xiaomi_mt6768 -b test --depth=1 --recursive kernel
-      # Download Clang
+          git clone https://github.com/Shakib-BD/kt_merlinx -b lineage-20 --depth=1 android-kernel
+          #git clone https://github.com/mitsu00/android_kernel_xiaomi_mt6768 --depth=1 android-kernel
+          #git clone https://ozipoetra120@dev.azure.com/ozipoetra120/test/_git/kernel_xiaomi_mt6768 -b uwu --depth=1 android-kernel
+          #git clone https://github.com/nuuwy0/kernel_xiaomi_mt6768 -b uwu --depth=1 android-kernel
+          #git clone https://github.com/mitsu00/merlin-r-oss -b main --depth=1 android-kernel
+          #git clone https://github.com/mitsu00/kernel_xiaomi_mt6768 -b noksu --depth=1 android-kernel
+          #git clone https://github.com/LineageOS/android_kernel_xiaomi_mt6768 -b lineage-20 android-kernel --depth=1
       - name: Clone Clang
         run: |
           cd $GITHUB_WORKSPACE
